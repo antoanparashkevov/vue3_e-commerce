@@ -95,6 +95,9 @@ Encore
 
 ;
 
+    if(!Encore.isProduction()){
+        Encore.disableCssExtraction()
+    }
 module.exports = Encore.getWebpackConfig();
 
 
