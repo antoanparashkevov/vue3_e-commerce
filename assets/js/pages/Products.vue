@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <div class="row">
       <aside class="col-xs-12 col-3">
-        <div class="sidebar p-3 mb-5">
+        <div :class="[$style.sidebar, 'p-3','mb-5']">
           <h5 class="text-center">
             Categories
           </h5>
@@ -42,7 +42,7 @@
           </div>
         </div>
         <div class="row">
-            <legend-component :title="legend + ' this is javascript'"></legend-component>
+            <legend-component :title="legend + ' this is a javascript'"></legend-component>
         </div>
       </div>
     </div>
@@ -58,12 +58,12 @@ export default {
   },
   data: () => ({
       // firstName: 'Antoan',
-    legend:'To do'
+    legend:'Antoan,'
     }),
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" module>
 @import "../../scss/components/light-component";
 
 .sidebar {
@@ -71,6 +71,8 @@ export default {
 
   ul {
     li a:hover {
+      //we can use blue-component-link-hover which i can find in scss/variables/colors
+      //because in components/light-component i import @import '../variables/colors';
       background: $blue-component-link-hover;
     }
   }

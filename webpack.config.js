@@ -7,6 +7,8 @@ if (!Encore.isRuntimeEnvironmentConfigured()) {
 }
 
 Encore
+
+
     // directory where compiled assets will be stored
     .setOutputPath('public/build/')
     // public path used by the web server to access the output path
@@ -25,8 +27,8 @@ Encore
      */
     .addEntry('app', './assets/js/app.js')
     .addEntry('products', './assets/js/products.js')
-    .addEntry('master', './assets/js/products.js')
-    .addEntry('junk', './assets/js/products.js')
+    // .addEntry('master', './assets/js/products.js')
+    // .addEntry('junk', './assets/js/products.js')
     //.addEntry('page1', './assets/js/page1.js')
     //.addEntry('page2', './assets/js/page2.js')
 
@@ -65,23 +67,29 @@ Encore
 
     // enables Sass/SCSS support
     .enableSassLoader()
-    .enableVueLoader(() => {}, {
+    .enableVueLoader(() => {
+    }, {
         version: 3,
-    })
+    });
+    
 
-    // uncomment if you use TypeScript
-    //.enableTypeScriptLoader()
 
-    // uncomment to get integrity="..." attributes on your script & link tags
-    // requires WebpackEncoreBundle 1.4 or higher
-    //.enableIntegrityHashes(Encore.isProduction())
 
-    // uncomment if you're having problems with a jQuery plugin
-    //.autoProvidejQuery()
+// uncomment if you use TypeScript
+//.enableTypeScriptLoader()
 
-    // uncomment if you use API Platform Admin (composer req api-admin)
-    //.enableReactPreset()
-    //.addEntry('admin', './assets/js/admin.js')
-;
+// uncomment to get integrity="..." attributes on your script & link tags
+// requires WebpackEncoreBundle 1.4 or higher
+//.enableIntegrityHashes(Encore.isProduction())
+
+// uncomment if you're having problems with a jQuery plugin
+//.autoProvidejQuery()
+
+// uncomment if you use API Platform Admin (composer req api-admin)
+//.enableReactPreset()
+//.addEntry('admin', './assets/js/admin.js')
+
 
 module.exports = Encore.getWebpackConfig();
+
+
