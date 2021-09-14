@@ -4,31 +4,38 @@
       Categories
     </h5>
     <ul class="nav flex-column mb4">
-      <li class="nav-item">
+<!--     we use v-for directive like this-->
+      <li
+          v-for="(category, index) in categories"
+          :key="index"
+          class="nav-item"
+      >
         <a
             class="nav-link"
-            href="/"
-        >All Products</a>
+            :href="category.link"
+        >{{ category.name }}</a>
       </li>
-      <li class="nav-item">
-        <a
-            class="nav-link"
-            href="#"
-        >Category A</a>
-      </li>
-      <li class="nav-item">
-        <a
-            class="nav-link"
-            href="#"
-        >Category B</a>
-      </li>
+
     </ul>
   </div>
 </template>
 
 <script>
 export default {
-name: "Sidebar"
+  name: 'Sidebar',
+  data: () => ({
+    categories: [
+      {
+        name:'Data Matrix Printers',
+        link: '#'
+      },
+      {
+        name:'Iomega Zip Drives',
+        link: '#'
+      }
+
+],
+}),
 }
 </script>
 
