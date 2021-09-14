@@ -1,5 +1,5 @@
 var Encore = require('@symfony/webpack-encore');
-
+var path = require('path');
 // Manually configure the runtime environment if not already configured yet by the "encore" command.
 // It's useful when you use tools that rely on webpack.config.js file.
 if (!Encore.isRuntimeEnvironmentConfigured()) {
@@ -39,6 +39,15 @@ Encore
     // but, you probably want this, unless you're building a single-page app
     .enableSingleRuntimeChunk()
 
+
+    //add Aliases to the directories when we import some files
+    .addAliases({
+        //if we import @, The Webpack will know that we are referring to assets/js
+        '@': path.resolve(__dirname, 'assets', 'js'),
+        styles: path.resolve(__dirname, 'assets', 'scss'),
+
+    })
+
     /*
      * FEATURE CONFIG
      *
@@ -67,16 +76,18 @@ Encore
 
     // enables Sass/SCSS support
     .enableSassLoader()
+
+    //enable Vue3
     .enableVueLoader(() => {
     }, {
         version: 3,
     })
 
-
+    //for css Module
     .configureCssLoader((config) => {
-    if (!Encore.isProduction() && config.modules) {
-        config.modules.localIdentName = '[name]_[local]_[hash:base64:5]';
-    }
+        if (!Encore.isProduction() && config.modules) {
+            config.modules.localIdentName = '[name]_[local]_[hash:base64:5]';
+        }
     })
 
 // uncomment if you use TypeScript
@@ -95,9 +106,11 @@ Encore
 
 ;
 
-    if(!Encore.isProduction()){
-        Encore.disableCssExtraction()
-    }
+
+//to update css with HMR, include this lines of code
+if (!Encore.isProduction()) {
+    Encore.disableCssExtraction();
+}
 module.exports = Encore.getWebpackConfig();
 
 

@@ -1,5 +1,5 @@
 import { createApp } from 'vue';
-import Products from './pages/Products';
+import Products from '@/pages/Products';
 // eslint-disable-next-line no-console
 console.log('VueJS is running! Congratulations');
 

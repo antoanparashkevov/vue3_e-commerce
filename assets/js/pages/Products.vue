@@ -12,8 +12,8 @@
 </template>
 
 <script>
-import SidebarComponent from '../components/Sidebar';
-import CatalogComponent from '../components/Catalog';
+import SidebarComponent from '@/components/Sidebar';
+import CatalogComponent from '@/components/Catalog';
 export default {
   name: "Products",
   components:{
