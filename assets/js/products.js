@@ -3,7 +3,8 @@ import Products from '@/pages/Products';
 // eslint-disable-next-line no-console
 console.log('VueJS is running! Congratulations');
 
-createApp(Products).mount("#app");
+const app= createApp(Products);
+app.mount("#app");
 //OR THIS
 // const app = createApp(Products);
 // app.mount( '#app');
