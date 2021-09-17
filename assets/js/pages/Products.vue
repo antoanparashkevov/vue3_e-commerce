@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <div class="row">
       <aside class="col-xs-12 col-3">
-      <sidebar-component></sidebar-component>
+      <sidebar-component :collapsed="sidebarCollapsed"/>
       </aside>
       <div class="col-xs-12 col-9">
         <catalog-component></catalog-component>
@@ -20,6 +20,9 @@ export default {
     SidebarComponent,
     CatalogComponent
   },
+  data:() => ({
+    sidebarCollapsed:false,
+  })
 };
 </script>
 

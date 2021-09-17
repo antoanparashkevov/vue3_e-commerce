@@ -10,11 +10,12 @@
      'p-3':true,
      'mb-5':true
   }"-->
+<!--  OR put all things into computed property componentClasses-->
   <div
       :class="componentClasses"
   >
 <!--    v-if or v-show-->
-    <div v-if="!collapsed">
+    <div v-show="!collapsed">
     <h5 class="text-center">
       Categories
     </h5>
@@ -54,9 +55,14 @@
 <script>
 export default {
   name: 'Sidebar',
+  props:{
+    collapsed: {
+      type:Boolean,
+      required:true,
+    }
+  },
   data: () => ({
     //set it false so that the component start not collapsed
-    collapsed: false,
     categories: [
       {
         name: 'Data Matrix Printers',
