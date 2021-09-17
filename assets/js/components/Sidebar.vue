@@ -43,7 +43,7 @@
       <div
           class="btn btn-secondary btn-sm"
           v-text="collapsed? '>>' : '&lt;< Collapse'"
-          @click="toggleCollapsed"
+          @click="$emit('toggleCollapsed')"
       >
 
       </div>
@@ -78,13 +78,16 @@ export default {
   created(){
     console.log(this, this.categories,this.componentClasses);
   },
-  methods: {
-    toggleCollapsed() {
-      console.log('Clicked');
-      this.collapsed= !this.collapsed;
-      console.log(this.componentClasses);
-    }
-  },
+  // methods: {
+  //   toggleCollapsed() {
+  //     console.log('Clicked');
+  //     //we are going to emit custom event toggle-collapsed.
+  //     //instead of changing collapsed prop like this
+  //     // this.collapsed= !this.collapsed;
+  //     // this.$emit('toggle-collapsed');
+  //     console.log(this.componentClasses);
+  //   }
+  // },
   computed:{
     componentClasses(){
       const classes = [this.$style.sidebar,'p-3', 'mb-5'];

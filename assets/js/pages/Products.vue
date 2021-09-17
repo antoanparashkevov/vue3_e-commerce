@@ -1,8 +1,22 @@
+<!--IMPORTANT-->
+<!--We communicate down from Product.vue to Sidebar.vue with props-->
+<!--We made sidebarCollapsed data in Product.vue(higher component) and added collapsed prop in Sidebar.vue(down component)-->
+<!--But the button doesn't work because we can't change the prop data.-->
+
+
+<!--To communicate up from Sidebar.vue to Product.vue we can use $emit-->
+<!--Emit is not a custom event, this event comes from Vue-->
+<!--Emit is build-in event -->
+
+
 <template>
   <div class="container-fluid">
     <div class="row">
       <aside class="col-xs-12 col-3">
-      <sidebar-component :collapsed="sidebarCollapsed"/>
+      <sidebar-component
+          :collapsed="sidebarCollapsed"
+          @toggle-collapsed="toggleSidebarCollapsed"
+      />
       </aside>
       <div class="col-xs-12 col-9">
         <catalog-component></catalog-component>
@@ -22,7 +36,12 @@ export default {
   },
   data:() => ({
     sidebarCollapsed:false,
-  })
+  }),
+  methods:{
+    toggleSidebarCollapsed(){
+      this.sidebarCollapsed=!this.sidebarCollapsed;
+    }
+  }
 };
 </script>
 
