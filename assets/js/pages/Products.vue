@@ -7,18 +7,16 @@
 <!--To communicate up from Sidebar.vue to Product.vue we can use $emit-->
 <!--Emit is not a custom event, this event comes from Vue-->
 <!--Emit is build-in event -->
-
-
 <template>
   <div class="container-fluid">
     <div class="row">
-      <aside class="col-xs-12 col-3">
+      <aside :class="asideClass">
       <sidebar-component
           :collapsed="sidebarCollapsed"
           @toggle-collapsed="toggleSidebarCollapsed"
       />
       </aside>
-      <div class="col-xs-12 col-9">
+      <div :class="catalogClass">
         <catalog-component></catalog-component>
       </div>
     </div>
@@ -37,11 +35,19 @@ export default {
   data:() => ({
     sidebarCollapsed:false,
   }),
+  computed:{
+    asideClass(){
+      return this.sidebarCollapsed ? 'aside-collapsed' : 'col-xs-12 col-3';
+    },
+    catalogClass(){
+      return this.sidebarCollapsed ? 'col-xs-12 col-11' : 'col-xs-12 col-9';
+    }
+  },
   methods:{
     toggleSidebarCollapsed(){
       this.sidebarCollapsed=!this.sidebarCollapsed;
     }
-  }
+  },
 };
 </script>
 
