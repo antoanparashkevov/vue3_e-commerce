@@ -1,11 +1,20 @@
 <template>
   <!--  like this we can make style dynamic by adding colon -->
   <!--  :style="'width: ' + collapsed ? '40px' : 'auto'" -->
+<!--  or-->
+<!--  :style="{width: collapsed? '70px' : 'auto'}"-->
+<!--  or-->
+<!--  :class="{
+    [$style.sidebar]: true,
+    [$style.collapsed]:collapsed,
+     'p-3':true,
+     'mb-5':true
+  }"-->
   <div
-      :class="[$style.sidebar, 'p-3','mb-5']"
-      :style="{width: collapsed? '70px' : 'auto'}"
-
+      :class="componentClasses"
   >
+<!--    v-if or v-show-->
+    <div v-if="!collapsed">
     <h5 class="text-center">
       Categories
     </h5>
@@ -25,6 +34,8 @@
     </ul>
 
     <hr>
+    </div>
+
     <div class="d-flex justify-content-end">
       <!--      add &lt; to prevent opening an HTML tag-->
       <!--      v-text is another Vue directive next to the v-bind(:) and v-for-->
@@ -58,10 +69,24 @@ export default {
 
     ],
   }),
+  created(){
+    console.log(this, this.categories,this.componentClasses);
+  },
   methods: {
     toggleCollapsed() {
       console.log('Clicked');
       this.collapsed= !this.collapsed;
+      console.log(this.componentClasses);
+    }
+  },
+  computed:{
+    componentClasses(){
+      const classes = [this.$style.sidebar,'p-3', 'mb-5'];
+
+      if(this.collapsed){
+        classes.push(this.$style.collapsed);
+      }
+      return classes;
     }
   }
 };
@@ -72,6 +97,11 @@ export default {
 
 .sidebar {
   @include light-component;
+
+  //if the element have both sidebar and collapsed, set the width to 70 px
+  &.collapsed{
+    width: 70px;
+  }
 
   ul {
     li a:hover {
