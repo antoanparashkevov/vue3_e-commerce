@@ -1,3 +1,4 @@
+<!--to see the data from for example api/products endpoint in json format through the browser, type -> 127.0.0.1:8000/api/products.jsonld -->
 <template>
 <section>
   <div class="row">
@@ -19,6 +20,7 @@
 </template>
 
 <script>
+import axios from 'axios';
 import LegendComponent from '@/components/Legend';
 export default {
   name: 'Catalog',
@@ -29,6 +31,11 @@ export default {
     // firstName: 'Antoan',
     legend:'Antoan,'
   }),
+  mounted() {
+    axios.get('/api/products').then((promise) => {
+      console.log(promise);
+    })
+  }
 };
 </script>
 
