@@ -45,6 +45,7 @@ Encore
         //if we import @, The Webpack will know that we are referring to assets/js
         '@': path.resolve(__dirname, 'assets', 'js'),
         styles: path.resolve(__dirname, 'assets', 'scss'),
+        images:path.resolve(__dirname, 'assets','images'),
 
     })
 
