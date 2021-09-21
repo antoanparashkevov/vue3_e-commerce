@@ -22,13 +22,13 @@
     <ul class="nav flex-column mb4">
       <!--     we use v-for directive like this-->
       <li
-          v-for="(category, index) in categories"
-          :key="index"
+          v-for="category in categories"
+          :key="category['@id']"
           class="nav-item"
       >
         <a
             class="nav-link"
-            :href="category.link"
+            :href="`/category/${category.id}`"
         >{{ category.name }}</a>
       </li>
 
@@ -53,6 +53,7 @@
 </template>
 
 <script>
+import axios from "axios";
 export default {
   name: 'Sidebar',
   props:{
@@ -63,20 +64,18 @@ export default {
   },
   data: () => ({
     //set it false so that the component start not collapsed
-    categories: [
-      {
-        name: 'Data Matrix Printers',
-        link: '#'
-      },
-      {
-        name: 'Iomega Zip Drives',
-        link: '#'
-      }
-
-    ],
+    categories: [],
   }),
-  created(){
-    console.log(this, this.categories,this.componentClasses);
+  mounted(){
+    axios.get('/api/categories').then((response) =>{
+      console.log(response);
+    });
+  },
+  async created() {
+    const response = await axios.get('/api/categories');
+    this.categories= response.data['hydra:member'];
+    console.log(response.data['hydra:member']);
+
   },
   // methods: {
   //   toggleCollapsed() {
