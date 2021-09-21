@@ -73,13 +73,19 @@
 
 <script>
 import axios from 'axios';
-
+import { getCurrentCategoryId } from '../services/page-contex.js';
 export default {
   name: 'Sidebar',
   props: {
     collapsed: {
       type: Boolean,
       required: true,
+    },
+    //we set default to null because when it is null, we will show all products
+    currentCategoryId:{
+      type:String,
+      default:null,
+      require:true
     }
   },
   data: () => ({
@@ -120,12 +126,8 @@ export default {
       }
       return classes;
     },
-    //currentCategoryId is a global javaScript variable and
-    //it can be used in Vue components with window.
-    currentCategoryId() {
-      return window.currentCategoryId;
-    }
-  }
+
+  },
 };
 </script>
 
@@ -133,7 +135,7 @@ export default {
 @import "~styles/components/light-component";
 
 //or just type :global here
-.sidebar :global {
+.sidebar {
   @include light-component;
 
   //if the element have both sidebar and collapsed, set the width to 70 px
@@ -151,7 +153,7 @@ export default {
 
     //we are inside of modular .sidebar class
     //and instead [$style.selected], just type 'selected' in our template
-     li a.selected {
+    :global  li a.selected {
       //this comes directly from /variables/colors
       //from the light-component.scss mixin we are using
       background: $light-component-border;

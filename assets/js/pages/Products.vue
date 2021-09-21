@@ -11,9 +11,12 @@
   <div class="container-fluid">
     <div class="row">
       <aside :class="asideClass">
+<!--        current-category-id is the prop who is locate in Sidebar.vue.
+            currentCategoryId is our computed property in Product.vue-->
       <sidebar-component
           :collapsed="sidebarCollapsed"
           @toggle-collapsed="toggleSidebarCollapsed"
+          :current-category-id="currentCategoryId"
       />
       </aside>
       <div :class="catalogClass">
@@ -26,6 +29,7 @@
 <script>
 import SidebarComponent from '@/components/Sidebar';
 import CatalogComponent from '@/components/Catalog';
+import { getCurrentCategoryId } from '../services/page-contex';
 export default {
   name: "Products",
   components:{
@@ -41,7 +45,13 @@ export default {
     },
     catalogClass(){
       return this.sidebarCollapsed ? 'col-xs-12 col-11' : 'col-xs-12 col-9';
-    }
+    },
+    //currentCategoryId is a global javaScript variable and
+    //it can be used in Vue components with window.
+    //this is a nice way to communicate information from server to our front-end app
+    currentCategoryId() {
+      return getCurrentCategoryId();
+    },
   },
   methods:{
     toggleSidebarCollapsed(){
