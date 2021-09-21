@@ -1,24 +1,34 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-{#    <div class="container">#}
-{#        <div class="row">#}
-{#            <div class="col-sm">#}
-{#                <h1>Hi! I would ❤️ it if someone put a Vue app here...</h1>#}
-{#            </div>#}
-{#        </div>#}
-{#    </div>#}
+    {# <div class="container"> #}
+    {# <div class="row"> #}
+    {# <div class="col-sm"> #}
+    {# <h1>Hi! I would ❤️ it if someone put a Vue app here...</h1> #}
+    {# </div> #}
+    {# </div> #}
+    {# </div> #}
     <div id="app"></div>
 {% endblock %}
 
 {% block javascripts %}
     {{ parent() }}
 
-    {{ encore_entry_script_tags('products')  }}
+    <script>
+        {% if currentCategoryId is defined %}
+        {# windos is a global javascript variable #}
+        window.currentCategoryId = '{{ currentCategoryId|e('js') }}';
+        {% else %}
+        {# that means we are on the homepage and showing all products #}
+        window.currentCategoryId = null;
+        {% endif %}
+    </script>
+
+    {{ encore_entry_script_tags('products') }}
 {% endblock %}
 
 {% block stylesheets %}
     {{ parent() }}
 
-    {{ encore_entry_link_tags('products')  }}
+    {{ encore_entry_link_tags('products') }}
 {% endblock %}
