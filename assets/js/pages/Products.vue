@@ -20,7 +20,7 @@
       />
       </aside>
       <div :class="catalogClass">
-        <catalog-component></catalog-component>
+        <catalog-component :current-category-id="currentCategoryId"></catalog-component>
       </div>
     </div>
   </div>

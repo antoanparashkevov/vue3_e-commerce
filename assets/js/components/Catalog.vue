@@ -30,6 +30,13 @@ export default {
     legend:'Antoan,',
     products:[],
   }),
+  props:{
+    currentCategoryId:{
+      type:String,
+      default:null,
+      require:true
+    }
+  },
   mounted(){
     axios.get('/api/products').then((response) => {
      console.log(response);
@@ -37,7 +44,18 @@ export default {
     })
   },
   async created() {
-    const response = await axios.get('/api/products');
+    //to make each category to show the products related to id
+    //this will hold all the query parameters that we want to send
+    const params = {};
+
+        if(this.currentCategoryId){
+          params.category=this.currentCategoryId;
+        }
+
+        //to pass that params to axios, we add a second argument which is an option object
+    const response = await axios.get('/api/products',{
+      params
+    });
     this.products= response.data['hydra:member'];
     console.log(response.data['hydra:member']);
   },
