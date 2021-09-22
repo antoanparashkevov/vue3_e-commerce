@@ -19,6 +19,9 @@
       <h5 class="text-center">
         Categories
       </h5>
+
+      <loading v-show="loading"/>
+
       <ul class="nav flex-column mb4">
         <li
             class="nav-item"
@@ -73,9 +76,12 @@
 
 <script>
 import axios from 'axios';
-import { getCurrentCategoryId } from '../services/page-contex.js';
+import Loading from './Loading';
 export default {
   name: 'Sidebar',
+  components:{
+    Loading
+  },
   props: {
     collapsed: {
       type: Boolean,
@@ -126,7 +132,9 @@ export default {
       }
       return classes;
     },
-
+    loading(){
+      return this.categories.length === 0;
+    }
   },
 };
 </script>
