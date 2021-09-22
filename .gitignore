@@ -1,5 +1,4 @@
 .env
-.env_example
 .idea/
 LICENSE
 bin/
@@ -11,3 +10,4 @@ symfony.lock
 var
 vendor
 yarn.lock
+yarn-error.log
