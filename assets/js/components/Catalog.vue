@@ -19,8 +19,9 @@
 </template>
 
 <script>
-import ProductList from './Product-List/Index';
 import axios from 'axios';
+import ProductList from './Product-List/Index';
+import { fetchProducts } from '../services/products-service';
 import LegendComponent from '@/components/Legend';
 
 export default {
@@ -54,11 +55,13 @@ export default {
   async created() {
     //to make each category to show the products related to id
     //this will hold all the query parameters that we want to send
-    const params = {};
 
-    if (this.currentCategoryId) {
-      params.category = this.currentCategoryId;
-    }
+    //we are going to comment this because we are using products-service.js file
+    // const params = {};
+    //
+    // if (this.currentCategoryId) {
+    //   params.category = this.currentCategoryId;
+    // }
 
     //here loading is true because we are going to fetch the products
     this.loading = true;
@@ -69,9 +72,7 @@ export default {
     //TRY and CATCH is for error handling if AJAX calls fails
     try {
       //to pass that params to axios, we add a second argument which is an option object
-      response = await axios.get('/api/products', {
-        params
-      });
+      response = await fetchProducts(this.currentCategoryId);
       //here loading is false because we were fetched the products at all
       this.loading = false;
 
