@@ -78,7 +78,6 @@ export default {
     } catch (error) {
       //when we are in this case and ajax call fails, the loading spinner will stop
       this.loading = false;
-
       //so if we hit the catch error, just return ( EXIT )
       return;
     }

@@ -77,6 +77,7 @@
 <script>
 import axios from 'axios';
 import Loading from './Loading';
+import { fetchCategories } from '../services/categories-service';
 export default {
   name: 'Sidebar',
   components:{
@@ -108,7 +109,7 @@ export default {
         });
   },
   async created() {
-    const response = await axios.get('/api/categories');
+   const response = await fetchCategories();
     this.categories = response.data['hydra:member'];
     console.log(response.data['hydra:member']);
 
