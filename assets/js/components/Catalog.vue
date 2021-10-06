@@ -44,6 +44,8 @@ export default {
       require: true
     }
   },
+
+  //that only prints the whole products properties into developer tool
   mounted() {
     axios.get('/api/products')
         .then((response) => {
@@ -84,6 +86,8 @@ export default {
     }
     //move this line outside of try/catch
     this.products = response.data['hydra:member'];
+
+    //this will print the current data of the catalog who is storing into hydra:member property
     console.log(response.data['hydra:member']);
 
   },

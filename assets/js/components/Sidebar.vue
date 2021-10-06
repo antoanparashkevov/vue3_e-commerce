@@ -102,15 +102,25 @@ export default {
     //we replace this with computed property
     //currentCategoryId: window.currentCategoryId,
   }),
+
+  //that only prints the whole categories properties into developer tool
   mounted() {
     axios.get('/api/categories')
         .then((response) => {
           console.log(response);
         });
   },
+
   async created() {
+    // THIS IS THE FIRST WAY
+    // axios.get("/api/categories").then((response) => {
+    //   this.categories = response.data["hydra:member"]
+    // })
+   // or THIS IS THE SECOND
    const response = await fetchCategories();
     this.categories = response.data['hydra:member'];
+
+    //this will print the current data of the catalog who is storing into hydra:member property
     console.log(response.data['hydra:member']);
 
   },
