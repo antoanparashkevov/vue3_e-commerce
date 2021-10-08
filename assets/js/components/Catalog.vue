@@ -41,7 +41,6 @@ export default {
     currentCategoryId: {
       type: String,
       default: null,
-      require: true
     }
   },
 
@@ -53,17 +52,10 @@ export default {
 
         });
   },
-  //THIS CREATED FUNCTION TAKES CARE OF MAKING AN AJAX REQUEST. This means that this function knows whether or not we are making an ajax calls to fetch products.
-  async created() {
-    //to make each category to show the products related to id
-    //this will hold all the query parameters that we want to send
 
-    //we are going to comment this because we are using products-service.js file
-    // const params = {};
-    //
-    // if (this.currentCategoryId) {
-    //   params.category = this.currentCategoryId;
-    // }
+  //THIS CREATED FUNCTION TAKES CARE OF MAKING AN AJAX REQUEST.
+  // This means that this function knows whether or not we are making an ajax calls to fetch products.
+  async created() {
 
     //here loading is true because we are going to fetch the products
     this.loading = true;
@@ -91,6 +83,25 @@ export default {
     console.log(response.data['hydra:member']);
 
   },
+
+//  BEFORE creating separate file products-service.js
+
+  // async created(){
+
+  //to make each category to show the products related to id
+  //this will hold all the query parameters that we want to send
+  //   const params = {};
+
+  //   if(this.currentCategoryId){
+  //     params.category = this.currentCategoryId;
+  //   }
+  //   const response = await axios.get("/api/products", {
+  //     params
+  //   });
+  //
+  //   this.products = response.data["hydra:member"];
+  // },
+
 };
 </script>
 
