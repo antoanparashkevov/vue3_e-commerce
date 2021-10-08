@@ -96,8 +96,8 @@ export default {
     }
   },
   data: () => ({
-    //set it false so that the component start not collapsed
     categories: [],
+
     //we could add a data and initialize it to window.currentCategoryId
     //we replace this with computed property
     //currentCategoryId: window.currentCategoryId,
@@ -153,7 +153,7 @@ export default {
 <style lang="scss" module>
 @import "~styles/components/light-component";
 
-//or just type :global here
+//or just type :global after the .sidebar class
 .sidebar {
   @include light-component;
 
