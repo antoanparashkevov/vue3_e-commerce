@@ -61,12 +61,12 @@ export default {
     this.loading = true;
 
     //this simply declares the variable outside of try/catch scope so this response variable is available in the entire created function
-    let response;
+    let data;
 
     //TRY and CATCH is for error handling if AJAX calls fails
     try {
       //to pass that params to axios, we add a second argument which is an option object
-      response = await fetchProducts(this.currentCategoryId);
+      data = await fetchProducts(this.currentCategoryId);
       //here loading is false because we were fetched the products at all
       this.loading = false;
 
@@ -77,29 +77,45 @@ export default {
       return;
     }
     //move this line outside of try/catch
-    this.products = response.data['hydra:member'];
+    this.products = data['hydra:member'];
 
     //this will print the current data of the catalog who is storing into hydra:member property
-    console.log(response.data['hydra:member']);
+    console.log(data['hydra:member']);
 
   },
 
 //  BEFORE creating separate file products-service.js
 
   // async created(){
-
-  //to make each category to show the products related to id
-  //this will hold all the query parameters that we want to send
+  //
+  // // to make each category to show the products related to id
+  // // this will hold all the query parameters that we want to send
   //   const params = {};
-
+  //
   //   if(this.currentCategoryId){
   //     params.category = this.currentCategoryId;
   //   }
-  //   const response = await axios.get("/api/products", {
-  //     params
-  //   });
+  //
+  //
+  //   let response;
+  //   this.loading = true;
+  //   try {
+  //    response = await axios.get("/api/products", {
+  //       params
+  //     });
+  //
+  //     this.loading = false;
+  //
+  //
+  //   } catch(error){
+  //     this.loading=false;
+  //
+  //     return;
+  //
+  //   }
   //
   //   this.products = response.data["hydra:member"];
+  //
   // },
 
 };

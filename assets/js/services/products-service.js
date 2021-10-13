@@ -15,5 +15,19 @@ export function fetchProducts(categoryIri){
 
     return  axios.get('/api/products', {
         params
-    });
+    }).then((response) => response.data)
 }
+
+//OR
+
+// export function fetchProducts(categoryIri){
+//     const params = {};
+//
+//     if (categoryIri) {
+//         params.category = categoryIri;
+//     }
+//
+//     return  axios.get('/api/products', {
+//         params
+//     });
+// }
