@@ -26,7 +26,7 @@
         <li
             class="nav-item"
         >
-          <!--          [] syntax is needed tha our key(selected) is a dynamic expression-->
+          <!--          [$style.selected] and [] syntax is needed tha our key(selected) is a dynamic expression-->
           <a
               :class="{
             'nav-link':true,

@@ -1,3 +1,5 @@
+<!--This component is making a loop in every product and this component is connect to ProductCard-->
+
 <template>
   <div class="row">
     <div class="col-12">

@@ -16,12 +16,22 @@
 
     <script>
         {% if currentCategoryId is defined %}
-        {# windos is a global javascript variable #}
+        {# window is a global javascript variable #}
         window.currentCategoryId = '{{ currentCategoryId|e('js') }}';
         {% else %}
         {# that means we are on the homepage and showing all products #}
         window.currentCategoryId = null;
         {% endif %}
+
+
+        //            this variable categories is an array of Category objects
+        //               we want to transform this into json
+        //               we can do this because we create SerializerExtension.php file into Twig folder
+        //              if we want to access it, in console type - > window.categories
+        //              this command will print all the stuff into hydra:member array
+
+        window.categories = {{ categories|jsonld }};
+
     </script>
 
     {{ encore_entry_script_tags('products') }}
