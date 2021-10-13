@@ -4,7 +4,10 @@
     <div class="row">
       <div class="col-12">
         <h1>
-          Products
+          <title-component
+          :current-category-id="currentCategoryId"
+          :categories="categories"
+          ></title-component>
         </h1>
       </div>
     </div>
@@ -23,12 +26,14 @@ import axios from 'axios';
 import ProductList from './Product-List/Index';
 import { fetchProducts } from '../services/products-service';
 import LegendComponent from '@/components/Legend';
+import TitleComponent from './Title';
 
 export default {
   name: 'Catalog',
   components: {
     LegendComponent,
-    ProductList
+    ProductList,
+    TitleComponent
   },
   data: () => ({
     // firstName: 'Antoan',
@@ -41,6 +46,10 @@ export default {
     currentCategoryId: {
       type: String,
       default: null,
+    },
+    categories:{
+      type:Array,
+      required:true
     }
   },
 

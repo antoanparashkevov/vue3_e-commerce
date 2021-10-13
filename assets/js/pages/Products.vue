@@ -23,6 +23,7 @@
       <div :class="catalogClass">
         <catalog-component
             :current-category-id="currentCategoryId"
+            :categories="categories"
         ></catalog-component>
       </div>
     </div>
