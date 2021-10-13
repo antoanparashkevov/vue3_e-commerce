@@ -117,11 +117,13 @@ export default {
     //   this.categories = response.data["hydra:member"]
     // })
    // or THIS IS THE SECOND
-   const response = await fetchCategories();
-    this.categories = response.data['hydra:member'];
+   // const response = await fetchCategories();
+   //  this.categories = response.data['hydra:member'];
+    //but now we are loading a global variable, not waiting a response and making ajax calls.
+    this.categories = fetchCategories();
 
     //this will print the current data of the catalog who is storing into hydra:member property
-    console.log(response.data['hydra:member']);
+    console.log(fetchCategories());
 
   },
   // methods: {

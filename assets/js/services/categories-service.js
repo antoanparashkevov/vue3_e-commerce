@@ -1,12 +1,16 @@
-import axios from 'axios';
 
 
 /**
  *
- * @returns Promise
+ * @returns Array
  */
 
 
 export function fetchCategories() {
-    return axios.get('/api/categories');
+
+    //to switch this from an AJAX call to global variable, instead this line
+    // return axios.get('/api/categories');
+//    type this. We will return an array of objects
+    return window.categories;
+
 }
