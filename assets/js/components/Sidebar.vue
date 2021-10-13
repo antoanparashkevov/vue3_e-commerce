@@ -77,7 +77,7 @@
 <script>
 import axios from 'axios';
 import Loading from './Loading';
-import { fetchCategories } from '../services/categories-service';
+// import { fetchCategories } from '../services/categories-service';
 
 export default {
   name: 'Sidebar',
@@ -94,40 +94,39 @@ export default {
       type: String,
       default: null,
       require: true
+    },
+    categories:{
+      type:Array,
+      required:true
     }
   },
-  data: () => ({
-    categories: [],
+  // data: () => ({
+    //we are moving this categories array to the highest component - > Products.vue
+    // categories: [],
 
     //we could add a data and initialize it to window.currentCategoryId
     //we replace this with computed property
     //currentCategoryId: window.currentCategoryId,
-  }),
+  // }),
 
-  //that only prints the whole categories properties into developer tool
-  mounted() {
-    axios.get('/api/categories')
-        .then((response) => {
-          console.log(response);
-        });
-  },
 
-  async created() {
-    // THIS IS THE FIRST WAY
-    // axios.get("/api/categories").then((response) => {
-    //   this.categories = response.data["hydra:member"]
-    // })
-    // or THIS IS THE SECOND
-    const response = await fetchCategories();
-     this.categories = response.data['hydra:member'];
-    //but now we are loading a global variable, not waiting a response and making ajax calls.
-    // this.categories = fetchCategories();
-    //but now we use a promise function in categories-service and
-    // we will return all the changes like before
-    //this will print the current data of the catalog who is storing into hydra:member property
-    console.log(response.data['hydra:member']);
-
-  },
+  //WE ARE MOVING THIS CREATED METHOD TO THE HIGHEST COMPONENT - > PRODUCTS.VUE
+  // async created() {
+  //   // THIS IS THE FIRST WAY
+  //   // axios.get("/api/categories").then((response) => {
+  //   //   this.categories = response.data["hydra:member"]
+  //   // })
+  //   // or THIS IS THE SECOND
+  //   const response = await fetchCategories();
+  //    this.categories = response.data['hydra:member'];
+  //   //but now we are loading a global variable, not waiting a response and making ajax calls.
+  //   // this.categories = fetchCategories();
+  //   //but now we use a promise function in categories-service and
+  //   // we will return all the changes like before
+  //   //this will print the current data of the catalog who is storing into hydra:member property
+  //   console.log(response.data['hydra:member']);
+  //
+  // },
   // methods: {
   //   toggleCollapsed() {
   //     console.log('Clicked');
