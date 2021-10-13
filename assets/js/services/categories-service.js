@@ -5,7 +5,7 @@
 
 
 export function fetchCategories() {
-    //we can create a promise
+    //we can create a promise and that is the best way to load a dynamic data instantly instead of making an AJAX call and waiting for response
     return new Promise((resolve, reject) =>{
         resolve({
             data:{
