@@ -17,6 +17,7 @@ class SerializerExtension extends AbstractExtension
 
     public function getFilters(): array
     {
+//        this is handmade function that transform what we want into JSON format
         return [
             new TwigFilter('jsonld', [$this, 'serializeToJsonLd'], ['is_safe' => ['html']]),
         ];
