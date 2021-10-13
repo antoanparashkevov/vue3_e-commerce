@@ -78,9 +78,10 @@
 import axios from 'axios';
 import Loading from './Loading';
 import { fetchCategories } from '../services/categories-service';
+
 export default {
   name: 'Sidebar',
-  components:{
+  components: {
     Loading
   },
   props: {
@@ -89,10 +90,10 @@ export default {
       required: true,
     },
     //we set default to null because when it is null, we will show all products
-    currentCategoryId:{
-      type:String,
-      default:null,
-      require:true
+    currentCategoryId: {
+      type: String,
+      default: null,
+      require: true
     }
   },
   data: () => ({
@@ -116,14 +117,15 @@ export default {
     // axios.get("/api/categories").then((response) => {
     //   this.categories = response.data["hydra:member"]
     // })
-   // or THIS IS THE SECOND
-   // const response = await fetchCategories();
-   //  this.categories = response.data['hydra:member'];
+    // or THIS IS THE SECOND
+    const response = await fetchCategories();
+     this.categories = response.data['hydra:member'];
     //but now we are loading a global variable, not waiting a response and making ajax calls.
-    this.categories = fetchCategories();
-
+    // this.categories = fetchCategories();
+    //but now we use a promise function in categories-service and
+    // we will return all the changes like before
     //this will print the current data of the catalog who is storing into hydra:member property
-    console.log(fetchCategories());
+    console.log(response.data['hydra:member']);
 
   },
   // methods: {
@@ -145,7 +147,7 @@ export default {
       }
       return classes;
     },
-    loading(){
+    loading() {
       return this.categories.length === 0;
     }
   },
@@ -174,7 +176,7 @@ export default {
 
     //we are inside of modular .sidebar class
     //and instead [$style.selected], just type 'selected' in our template
-    :global  li a.selected {
+    :global li a.selected {
       //this comes directly from /variables/colors
       //from the light-component.scss mixin we are using
       background: $light-component-border;
